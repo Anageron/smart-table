@@ -156,7 +156,7 @@ const rules = {
         if (isEmpty(targetValue)) {
             return { skip: true };
         }
-
+     
         // Убедиться, что поисковый запрос это строка
         const searchTerm = String(targetValue);
 
