@@ -15,16 +15,17 @@ export function initFiltering(elements) {
   const applyFiltering = (query, state, action) => {
     // код с обработкой очистки поля
 
-    //проверяю что нажали на кнопку отчистить 
+    //проверяю что нажали на кнопку отчистить
     if (action && action.name === "clear") {
-    // получаю значение из data-field
+      // получаю значение из data-field
       const actionField = action.dataset.field;
-    // если оно равно полю то чищу value у этого поля
+      // если оно равно полю то чищу value у этого поля
       if (actionField === "customer") {
-        elements.searchByCustomer.value = "";
+        elements.searchByCustomer.value &&
+          (elements.searchByCustomer.value = "");
       }
       if (actionField === "date") {
-        elements.searchByDate.value = "";
+        elements.searchByDate.value && (elements.searchByDate.value = "");
       }
     }
 
