@@ -15,7 +15,19 @@ export function initFiltering(elements) {
   const applyFiltering = (query, state, action) => {
     // код с обработкой очистки поля
 
-    // @todo: #4.5 — отфильтровать данные, используя компаратор
+    //проверяю что нажали на кнопку отчистить 
+    if (action && action.name === "clear") {
+    // получаю значение из data-field
+      const actionField = action.dataset.field;
+    // если оно равно полю то чищу value у этого поля
+      if (actionField === "customer") {
+        elements.searchByCustomer.value = "";
+      }
+      if (actionField === "date") {
+        elements.searchByDate.value = "";
+      }
+    }
+
     const filter = {};
     Object.keys(elements).forEach((key) => {
       if (elements[key]) {
