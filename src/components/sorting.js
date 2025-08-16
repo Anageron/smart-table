@@ -1,7 +1,11 @@
-import { sortCollection, sortMap } from "../lib/sort.js";
+const sortMap = {
+  none: "up", // Из "без сортировки" переходим в "по возрастанию"
+  up: "down", // Из "по возрастанию" переходим в "по убыванию"
+  down: "none", // Из "по убыванию" переходим в "без сортировки"
+};
 
 export function initSorting(columns) {
-  return (data, state, action) => {
+  return (query, state, action) => {
     let field = null;
     let order = null;
 
@@ -33,7 +37,7 @@ export function initSorting(columns) {
         }
       });
     }
-
-    return sortCollection(data, field, order);
+    const sort = field && order !== "none" ? `${field}:${order}` : null;
+    return sort ? Object.assign({}, query, { sort }) : query;
   };
 }
